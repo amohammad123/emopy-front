@@ -47,14 +47,14 @@ function checkRefreshTokenExist() {
 export async function refreshAccessToken() {
   try {
     checkRefreshTokenExist();
-    const { data } = await axios.post(baseurl + '/refresh', {
+    const { data } = await axios.post(baseurl + '/account/refresh', {
       refresh: localStorage.getItem('refresh')
     });
     localStorage.setItem('access', data.access);
     return data;
   } catch (error) {
-    if (window.location.href !== '/profile') {
-      window.location.href = '/profile';
+    if (window.location.href !== '/account/profile') {
+      window.location.href = '/account/profile';
     }
     localStorage.removeItem('refresh');
     localStorage.removeItem('access');
